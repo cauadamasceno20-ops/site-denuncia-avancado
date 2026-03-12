@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prefeitura - Denúncia de Lixo</title>
+
+<style>
+body{
+font-family: Arial, sans-serif;
+margin:0;
+background:#f4f4f4;
+}
+
+header{
+background:#0b5ed7;
+color:white;
+padding:20px;
+text-align:center;
+}
+
+nav{
+background:#084298;
+padding:10px;
+text-align:center;
+}
+
+nav a{
+color:white;
+margin:10px;
+text-decoration:none;
+font-weight:bold;
+}
+
+.container{
+max-width:600px;
+margin:40px auto;
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+input, textarea{
+width:100%;
+padding:10px;
+margin-top:8px;
+margin-bottom:20px;
+border-radius:5px;
+border:1px solid #ccc;
+}
+
+button{
+background:#198754;
+color:white;
+border:none;
+padding:12px;
+width:100%;
+font-size:16px;
+border-radius:5px;
+cursor:pointer;
+}
+
+button:hover{
+background:#157347;
+}
+
+.preview{
+text-align:center;
+margin-top:10px;
+}
+
+.preview img{
+max-width:100%;
+border-radius:8px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Prefeitura Municipal</h1>
+<p>Portal de Denúncias Urbanas</p>
+</header>
+
+<nav>
+<a href="#">Início</a>
+<a href="#">Serviços</a>
+<a href="#">Denúncias</a>
+<a href="#">Contato</a>
+</nav>
+
+<div class="container">
+
+<h2>Denunciar excesso de lixo</h2>
+
+<form id="denunciaForm">
+
+<label>Rua:</label>
+<input type="text" placeholder="Digite o nome da rua" required>
+
+<label>Descrição da denúncia:</label>
+<textarea placeholder="Descreva o problema encontrado..." required></textarea>
+
+<label>Foto do local:</label>
+<input type="file" id="foto" accept="image/*">
+
+<div class="preview" id="preview"></div>
+
+<button type="submit">Enviar denúncia</button>
+
+</form>
+
+</div>
+
+<script>
+
+const fotoInput = document.getElementById("foto");
+const preview = document.getElementById("preview");
+
+fotoInput.addEventListener("change", function(){
+const file = this.files[0];
+
+if(file){
+const reader = new FileReader();
+
+reader.onload = function(e){
+preview.innerHTML = `<img src="${e.target.result}">`;
+}
+
+reader.readAsDataURL(file);
+}
+});
+
+document.getElementById("denunciaForm").addEventListener("submit", function(e){
+e.preventDefault();
+alert("Denúncia enviada com sucesso! A prefeitura irá analisar.");
+});
+
+</script>
+
+</body>
+</html>
